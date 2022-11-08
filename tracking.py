@@ -31,7 +31,7 @@ def selection_template():
 selection_template()
 
 delta                = 50    # Defined to look around the place where the template was found
-sens                 = 0.6   # Sensibility of cv2.matchTemplate
+sensibiliy                 = 0.6   # Sensibility of cv2.matchTemplate
 everywhere           = True  # To search the template everywhere on the frame
 current_x, current_y = 0, 0  # Global x, y coordinate of the top left point of template found
 v_x, v_y             = 0, 0  # Speed along x, y of the template
@@ -80,7 +80,7 @@ while True:
         res         = cv2.matchTemplate(search_area, template, cv2.TM_CCOEFF_NORMED)
         pt          = np.unravel_index(res.argmax(), res.shape) # Top left point of the greatest match between template and search area
 
-        if res[pt] > sens: # If template found
+        if res[pt] > sensibiliy: # If template found
             last_x    = current_x
             last_y    = current_y
             current_x = pt[1] + x_tl_search # Adding back the offset comming from the reduced search area
@@ -120,7 +120,7 @@ while True:
         res = cv2.matchTemplate(frame, template, cv2.TM_CCOEFF_NORMED)
         pt  = np.unravel_index(res.argmax(), res.shape)
 
-        if res[pt] > sens: # If template found
+        if res[pt] > sensibiliy: # If template found
             current_x = pt[1]
             current_y = pt[0]
 
