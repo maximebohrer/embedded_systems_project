@@ -12,6 +12,7 @@ moteur_2_pwm = PWM(moteur_2)
 azimuth = 0
 update_engine = 0
 timer = Timer(-1)
+
 def timer_handler(timer):
     global update_engine
     update_engine = 1
@@ -33,6 +34,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(('', 4747))
 server.listen(5)
 
+# Accept connections on a separate thread
 def listen():
     global azimuth
     while True:
@@ -51,8 +53,7 @@ def listen():
             if error:
                 break
             azimuth = struct.unpack("f", data)[0]
-            #print(azimuth)
-        azimuth = 0
+        azimuth = 0 # Reset to stop the engine when client disconnects
         
 _thread.start_new_thread(listen, ())
 
@@ -60,9 +61,10 @@ while True:
     if update_engine:
         update_engine = 0
         
+        # Calculation of the engine target : proportional and bounded target
         duty = int(min(4000 * abs(azimuth), 1023))
-        print(azimuth)
-        if azimuth > 0:
+
+        if azimuth > 0: # Direction of rotation depends on azimuth sign
             moteur_1_pwm.duty(duty)
             moteur_2_pwm.duty(0)
         else:
