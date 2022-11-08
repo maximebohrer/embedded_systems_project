@@ -20,7 +20,7 @@ def selection_template():
     global template, h, w, h_frame, w_frame
     ret, frame = cap.read()
     #frame      = cv2.rotate(frame, cv2.ROTATE_180)
-    frame      = cv2.flip(frame, 1)
+    #frame      = cv2.flip(frame, 1)
     r = cv2.selectROI('Selectionnez le template', frame)
     cv2.destroyWindow('Selectionnez le template')
     template = frame[int(r[1]) : int(r[1] + r[3]), int(r[0]) : int(r[0] + r[2])]
@@ -41,7 +41,7 @@ azimuth, elevation   = 0, 0  # Horizontal, vertical angle that the object makes 
 while True:
     ret, frame = cap.read()
     #frame      = cv2.rotate(frame, cv2.ROTATE_180)
-    frame      = cv2.flip(frame, 1) # Flip the frame along vertical axis
+    #frame      = cv2.flip(frame, 1) # Flip the frame along vertical axis
 
     if not everywhere:
         # Prediction of the next position according to last position, speed and acceleration
@@ -87,7 +87,7 @@ while True:
             current_y = pt[0] + y_tl_search
             
             # Azimuth and elevation of template found
-            azimuth   = - np.arctan(0.601 * (current_x + w / 2 - w_frame / 2) / (w_frame / 2)) # 0.601 is such that arctan(0.601) = half of horizontal camera viewing angle ~= 31° 
+            azimuth   = np.arctan(0.601 * (current_x + w / 2 - w_frame / 2) / (w_frame / 2)) # 0.601 is such that arctan(0.601) = half of horizontal camera viewing angle ~= 31° 
             elevation = - np.arctan(0.451 * (current_y + h / 2 - h_frame / 2) / (h_frame / 2)) # 0.451 is such that arctan(0.451) = half of vertical camera viewing angle ~= 24° 
             send_angle(azimuth)
             print(f"azimuth = {azimuth}     elevation = {elevation}")
