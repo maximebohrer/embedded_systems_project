@@ -38,3 +38,8 @@ Les valeurs reçues du Raspberry Pi sont décodées par la fonction `struct.unpa
 ### Commande du moteur
 
 Périodiquement, grâce à un timer, la consigne du moteur est calculée à partir de l'azimuth. Le moteur est à courant continu, contrôlé par un pont en H. Deux sorties de l'ESP32 sont nécéssaires à son fonctionnement : une pour chaque sens de rotation. De plus, envoyer un signal [PWM](https://fr.wikipedia.org/wiki/Modulation_de_largeur_d%27impulsion) sur ces pins permet de faire varier la vitesse en changeant le rapport cyclique. On calcule donc ce rapport cyclique en fonction de l'azimuth, et on l'envoie sur le bon pin en fonction du signe de l'azimuth.
+
+Démo
+----
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6z1_OGObuqY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
