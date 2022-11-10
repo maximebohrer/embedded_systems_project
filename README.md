@@ -42,4 +42,10 @@ Périodiquement, grâce à un timer, la consigne du moteur est calculée à part
 Démo
 ----
 
+### Système complet
+
 [![Alt text](https://img.youtube.com/vi/6z1_OGObuqY/0.jpg)](https://www.youtube.com/watch?v=6z1_OGObuqY)
+
+### Caméra
+
+[![Alt text](https://img.youtube.com/vi/IvsRmVa7WwY/0.jpg)](https://www.youtube.com/watch?v=IvsRmVa7WwY)
